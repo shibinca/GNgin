@@ -38,6 +38,15 @@ namespace GNgin { namespace graphics {
 		}
 
 		glfwMakeContextCurrent(m_Window);
+		glfwSetWindowSizeCallback(m_Window, windowResize);
+
+		std::cout << "OpenGL " << glGetString(GL_VERSION) << std::endl;
+
+
+		if (glewInit() != GLEW_OK)
+		{
+			std::cout << "could not init glew!";
+		}
 
 		return true;
 	}
@@ -54,8 +63,8 @@ namespace GNgin { namespace graphics {
 
 	void Window::update() 
 	{
-		glfwPollEvents();		
-		glfwSetWindowSizeCallback(m_Window, windowResize);
+		glfwPollEvents();				
+		
 		glfwSwapBuffers(m_Window);
 	}
 
